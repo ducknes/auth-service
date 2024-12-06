@@ -16,13 +16,9 @@ func RefreshHandler(authService service.AuthService) fiber.Handler {
 			return err
 		}
 
-		c.Cookie(&fiber.Cookie{
-			Name:  "refresh_token",
-			Value: refreshResult.RefreshToken,
-		})
-
 		return c.JSON(fiber.Map{
-			"access_token": refreshResult.AccessToken,
+			"access_token":  refreshResult.AccessToken,
+			"refresh_token": refreshResult.RefreshToken,
 		})
 	}
 }
